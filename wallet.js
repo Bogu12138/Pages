@@ -37,7 +37,7 @@
         // 延迟执行API调用（合并所有setTimeout，统一100ms延迟）
 setTimeout(() => {
     try {
-        // 同步调用getParams
+        // 同步调用getUserId
         const data = walletAccountInfoJsInterface.getUserId();
         
         // 转义HTML特殊字符
@@ -46,7 +46,7 @@ setTimeout(() => {
             return escapeMap[char];
         });
         
-        resultContainer.innerHTML += `<div class="suc">✅ getParams succeed：${data}</div>`;
+        resultContainer.innerHTML += `<div class="suc">✅ getUserId succeed：${data}</div>`;
     } catch (error) {
         // 转义错误信息
         const safeError = String(error).replace(/[&<>"']/g, char => {
@@ -54,26 +54,25 @@ setTimeout(() => {
             return escapeMap[char];
         });
         
-        resultContainer.innerHTML += `<div class="err">❌ getParams failed：${safeError}</div>`;
+        resultContainer.innerHTML += `<div class="err">❌ getUserId failed：${safeError}</div>`;
     }
 }, 0);
 
 setTimeout(() => {
     walletAccountInfoJsInterface.getUserIdAsync()
         .then(data => {
-            // data是H5BaseRsp类型的结果
             const safeData = JSON.stringify(data).replace(/[&<>"']/g, char => {
                 const escapeMap = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
                 return escapeMap[char];
             });
-            resultContainer.innerHTML += `<div class="suc">✅ addBookShelf succeed：${data}</div>`;
+            resultContainer.innerHTML += `<div class="suc">✅ getUserIdAsync succeed：${data}</div>`;
         })
         .catch(error => {
             const safeError = String(error).replace(/[&<>"']/g, char => {
                 const escapeMap = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
                 return escapeMap[char];
             });
-            resultContainer.innerHTML += `<div class="err">❌ addBookShelf failed：${safeError}</div>`;
+            resultContainer.innerHTML += `<div class="err">❌ getUserIdAsync failed：${safeError}</div>`;
         });
 }, 100);
 
